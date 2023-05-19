@@ -14,9 +14,13 @@ app.post('/bfhl', (req, res) => {
     console.log(jsonData)
     const numbers = [];
     const letters = [];
+    const str = jsonData;
+    const regex = /[A-Za-z0-9]+/g;
+const matches = str.match(regex);
+console.log(matches);
     
-    for (let i = 0; i < jsonData.length; i++) {
-        const element = jsonData[i];
+    for (let i = 0; i < matches.length; i++) {
+        const element = matches[i];
         if (!isNaN(parseFloat(element))) {
           numbers.push(parseFloat(element));
         } else {
@@ -30,7 +34,6 @@ app.post('/bfhl', (req, res) => {
         roll_number: "RA2011033010177",
         numbers: numbers,
         alphabets:letters,
-        data: req.body.data
     
     }
 
