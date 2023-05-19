@@ -10,6 +10,10 @@ app.get('/bfhl', (req, res) => {
     res.send(ans)
 })
 app.post('/bfhl', (req, res) => {
+    if (!jsonData || !Array.isArray(jsonData)) {
+        return res.status(400).json({ error: 'Invalid input data' });
+      }
+    
     // console.log(req.body)
     var jsonData= (req.body.data)
     console.log(jsonData)
