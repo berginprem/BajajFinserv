@@ -10,13 +10,14 @@ app.get('/bfhl', (req, res) => {
     res.send(ans)
 })
 app.post('/bfhl', (req, res) => {
-    // if (!jsonData ) {
-    //     return res.status(400).json({ error: 'Invalid input data' });
-    //   }
+    
     
     // console.log(req.body)
     var jsonData= (req.body.data)
-    console.log(jsonData)
+    if (!jsonData ) {
+        return res.status(400).json({ error: 'Invalid input format. Please use x-www-form-urlencoded format for smoother experience' });
+      }
+    // console.log(jsonData)
     const numbers = [];
     const letters = [];
     const str = jsonData;
