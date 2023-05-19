@@ -1,6 +1,10 @@
 const express = require("express");
+
 const app = express();
 app.use(express.urlencoded({ extended: true }))
+const multer = require('multer');
+const upload = multer();
+app.use(upload.any());
 app.use(express.json())
 
 
