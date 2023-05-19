@@ -10,6 +10,7 @@ app.get('/bfhl', (req, res) => {
     res.send(ans)
 })
 app.post('/bfhl', (req, res) => {
+    // console.log(req.body)
     var jsonData= (req.body.data)
     console.log(jsonData)
     const numbers = [];
@@ -17,7 +18,7 @@ app.post('/bfhl', (req, res) => {
     const str = jsonData;
     const regex = /[A-Za-z0-9]+/g;
 const matches = str.match(regex);
-console.log(matches);
+// console.log(matches);
     
     for (let i = 0; i < matches.length; i++) {
         const element = matches[i];
