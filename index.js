@@ -22,7 +22,7 @@ console.log(matches);
     for (let i = 0; i < matches.length; i++) {
         const element = matches[i];
         if (!isNaN(parseFloat(element))) {
-          numbers.push(parseFloat(element));
+          numbers.push((element));
         } else {
           letters.push(element);
         }
