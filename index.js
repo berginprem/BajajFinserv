@@ -15,7 +15,7 @@ app.get('/bfhl', (req, res) => {
 })
 app.post('/bfhl', (req, res) => {
     
-    
+    try{
     // console.log(req.body)
     var jsonData= (req.body.data)
     if (!jsonData ) {
@@ -33,8 +33,11 @@ const matches = str.match(regex);
         const element = matches[i];
         if (!isNaN(parseFloat(element))) {
           numbers.push((element));
-        } else {
+        } else if(element.match(/[A-Za-z]/i)){
           letters.push(element);
+        }
+        else {
+            return res.status(400).json({ error: 'Invalid input found. ' });
         }
       }
     const data ={
@@ -48,8 +51,14 @@ const matches = str.match(regex);
     }
 
     res.send(data)
+}catch(e){res.send(e)}
 })
-
+app.get('*', (req, res) => {
+  res.send(`I don't know that path!`)
+})
+app.post('*', (req, res) => {
+  res.send(`You're not allowed to post to this path!`)
+})
 app.listen(3000, () => {
     console.log("LISTENING ON PORT 3000")
 })
