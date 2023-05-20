@@ -21,16 +21,16 @@ app.post('/bfhl', (req, res) => {
     if (!jsonData ) {
         return res.status(400).json({ error: 'Invalid input format. Please use x-www-form-urlencoded format for smoother experience' });
       }
-    // console.log(jsonData)
+    console.log(jsonData)
     const numbers = [];
     const letters = [];
     const str = jsonData;
     const regex = /[A-Za-z0-9]+/g;
-const matches = str.match(regex);
+// const matches = str.match(regex);
 // console.log(matches);
     
-    for (let i = 0; i < matches.length; i++) {
-        const element = matches[i];
+    for (let i = 0; i < jsonData.length; i++) {
+        const element = jsonData[i];
         if (!isNaN(parseFloat(element))) {
           numbers.push((element));
         } else if(element.match(/[A-Za-z]/i)){
@@ -40,6 +40,7 @@ const matches = str.match(regex);
             return res.status(400).json({ error: 'Invalid input found. ' });
         }
       }
+      console.log("hi")
     const data ={
         is_success : true,
         user_id:"Bergin_Prem_Y_05112001",
@@ -49,9 +50,13 @@ const matches = str.match(regex);
         alphabets:letters,
     
     }
+    console.log(data)
 
-    res.send(data)
-}catch(e){res.send(e)}
+    res.json(data)
+}catch(e){
+  console.log("helo")
+  console.log(e)
+  res.send(e)}
 })
 app.get('*', (req, res) => {
   res.send(`I don't know that path!`)
